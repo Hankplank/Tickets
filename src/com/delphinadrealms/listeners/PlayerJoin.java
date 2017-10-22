@@ -18,7 +18,7 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         if (event.getPlayer().hasPermission("tickets.staff")) {
-            Main.staffList.add(event.getPlayer().getUniqueId());
+            Main.staffList.add(event.getPlayer());
         }
     }
 }

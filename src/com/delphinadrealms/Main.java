@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 public class Main extends JavaPlugin {
 
-    public static ArrayList<UUID> staffList;
+    public static ArrayList<Player> staffList;
     public static ArrayList<Ticket> tickets;
 
     @Override
@@ -24,7 +24,7 @@ public class Main extends JavaPlugin {
         tickets = new ArrayList<>();
         for (Player player : this.getServer().getOnlinePlayers()) {
             if (player.hasPermission("tickets.staff")){
-                staffList.add(player.getUniqueId());
+                staffList.add(player);
             }
 
             }

@@ -14,7 +14,7 @@ public class PlayerLeave implements Listener{
     public void onPlayerLeave(PlayerQuitEvent event) {
         if (event.getPlayer().hasPermission("tickets.staff")) {
             try {
-                Main.staffList.remove(event.getPlayer().getUniqueId());
+                Main.staffList.remove(event.getPlayer());
             } catch (Exception e) {
 
             }

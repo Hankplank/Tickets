@@ -37,7 +37,6 @@ public class TicketCommands implements CommandExecutor {
                     }
                     break;
                 case "create":
-
                     if (sender instanceof Player && playerTickets(((Player) sender).getPlayer()) < 3 && sender.hasPermission("tickets.staff")) {
                         List<String> ticketInfo = new ArrayList<>();
                         for (int x =1;x<args.length;x++) {
@@ -88,7 +87,11 @@ public class TicketCommands implements CommandExecutor {
                     }
                     break;
                 case "stafflist":
-                    sender.sendMessage(Main.staffList.toString());
+                    String stafflist = "";
+                    for (int i =0;i< Main.staffList.size();i++){
+                        stafflist.concat(Main.staffList.get(i).getName() + ", ");
+                    }
+                    sender.sendMessage("There are: " + Main.staffList.size() + "staff members online.\n" +  stafflist);
                     break;
                 default:
                     sender.sendMessage(ChatColor.BLUE + "Command not found. Try /ticket help");
