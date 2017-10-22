@@ -38,7 +38,7 @@ public class TicketCommands implements CommandExecutor {
                     break;
                 case "create":
 
-                    if (sender instanceof Player && playerTickets(((Player) sender).getPlayer()) < 3) {
+                    if (sender instanceof Player && playerTickets(((Player) sender).getPlayer()) < 3 && sender.hasPermission("tickets.staff")) {
                         List<String> ticketInfo = new ArrayList<>();
                         for (int x =1;x<args.length;x++) {
                             ticketInfo.add(args[x]);
