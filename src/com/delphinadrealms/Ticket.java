@@ -2,8 +2,6 @@ package com.delphinadrealms;
 
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
-
 /**
  * Created by henry27 on 10/21/2017.
  */
@@ -13,8 +11,6 @@ public class Ticket {
 
     private String ticketInfo;
 
-    private UUID responderUUID;
-    private String responderName;
 
 
     public Player getTicketSender() {

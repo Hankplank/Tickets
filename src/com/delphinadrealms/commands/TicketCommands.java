@@ -18,13 +18,26 @@ import java.util.List;
 public class TicketCommands implements CommandExecutor {
 
 
-    public int playerTickets(Player player) {
+    public int countPlayerTickets(Player player) {
         int count = 0;
         for (int i =0;i < Main.tickets.size();i++) {
             if (Main.tickets.get(i).getTicketSender().getName() == player.getName())
                 count++;
         }
         return count;
+    }
+
+    public String getPlayerTickets(Player player) {
+        String playerTickets = "";
+        int count =0;
+        for (Ticket ticket: Main.tickets) {
+            if (ticket.getTicketSender().getName().equalsIgnoreCase(player.getName())) {
+                count++;
+                playerTickets = playerTickets + count + ". " + ticket.getTicketInfo() + "\n";
+
+            }
+        }
+        return playerTickets;
     }
 
     @Override
@@ -37,7 +50,7 @@ public class TicketCommands implements CommandExecutor {
                     }
                     break;
                 case "create":
-                    if (sender instanceof Player && playerTickets(((Player) sender).getPlayer()) < 3 && sender.hasPermission("tickets.staff")) {
+                    if (sender instanceof Player && countPlayerTickets(((Player) sender).getPlayer()) < 3 && sender.hasPermission("tickets.player")) {
                         List<String> ticketInfo = new ArrayList<>();
                         for (int x =1;x<args.length;x++) {
                             ticketInfo.add(args[x]);
@@ -66,6 +79,19 @@ public class TicketCommands implements CommandExecutor {
                         sender.sendMessage("No permissions or you already created too many tickets.");
                     }
                      break;
+                    
+                case "mylist":
+                    if (sender instanceof Player && sender.hasPermission("tickets.player")) {
+                        if (countPlayerTickets(((Player) sender).getPlayer()) > 0) {
+                            sender.sendMessage(getPlayerTickets(((Player) sender).getPlayer()));
+                        } else {
+                            sender.sendMessage("You have no tickets!");
+                        }
+                    } else {
+                        sender.sendMessage(ChatColor.BLUE + "You don't have permission.");
+                    }
+                    
+                    break;
                 case "answer":
                     if (sender instanceof Player && sender.hasPermission("tickets.staff") && !Main.tickets.isEmpty()) {
                         int x;
@@ -93,6 +119,8 @@ public class TicketCommands implements CommandExecutor {
                     }
                     sender.sendMessage("There are: " + Main.staffList.size() + "staff members online.\n" +  stafflist);
                     break;
+                case "verison":
+
                 default:
                     sender.sendMessage(ChatColor.BLUE + "Command not found. Try /ticket help");
             }

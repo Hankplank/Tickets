@@ -31,6 +31,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoin(),this);
         getServer().getPluginManager().registerEvents(new PlayerLeave(),this);
         this.getCommand("ticket").setExecutor(new TicketCommands());
+
     }
 
     @Override

@@ -1,6 +1,6 @@
 main: com.delphinadrealms.Main
 name: Tickets
-version: 1.0
+version: 1.1
 author: Hank
 description: Tickets
 commands:
